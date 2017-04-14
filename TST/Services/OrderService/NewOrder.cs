@@ -49,5 +49,15 @@ namespace TST.Services.OrderService
         /// The user who is assigned to work the order. Changes as it moves through the order process. 
         /// </summary>
         public string AssignedTo { get; set; }
+
+        /// <summary>
+        ///    the department the sales agent belongs too
+        /// </summary>
+        public int DepartmentId { get; set; }
+
+        /// <summary>
+        /// The workflow the order is following
+        /// </summary>
+        public int WorkflowId { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TST.Models;
 using TST.Services;
 using TST.Services.OrderService;
+using TST.SQL;
 
 namespace TST.Controllers
 {
@@ -89,14 +90,18 @@ namespace TST.Controllers
         {
             if (ModelState.IsValid)
             {
+                //hardcoded for now:
+                orderChangeRequest.WorkFlowType = WorkflowEnum.ConsumerMobile;
 
+
+                //initial orderservice 
                 OrderServiceFactory factory = new OrderServiceFactory();
 
                 IOrderService orderService = factory.StartFactory(orderChangeRequest.WorkFlowType);
 
                 orderService.StartService(orderChangeRequest.ChangeRequest);
 
-
+                
                 switch (orderChangeRequest.Trigger)
                 {
                     case TriggerEnum.Open:

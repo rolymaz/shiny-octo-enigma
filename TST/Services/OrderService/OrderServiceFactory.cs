@@ -8,7 +8,7 @@ namespace TST.Services.OrderService
 {
     public class OrderServiceFactory
     {
-        public IOrderService StartFactory(WorkflowTypeEnum workflowId)
+        public IOrderService StartFactory(WorkflowEnum workflowId)
         {
 
             IOrderService orderService;
@@ -16,17 +16,19 @@ namespace TST.Services.OrderService
             switch (workflowId)
             {
 
-                case WorkflowTypeEnum.Test:
+                case WorkflowEnum.Test:
 
-                    //case 1: Test workflow
-                    orderService = new ConsumerMobileOrderService();
+                    //case 1: Test order service 
+                    orderService = new TestOrderService();
                     break;
 
 
-                case WorkflowTypeEnum.ConsumerMobile:
+                case WorkflowEnum.ConsumerMobile:
                     //case 2: ConsumerMobile
                     orderService = new ConsumerMobileOrderService();
                     break;
+
+
                 default:
                     throw new Exception();
 

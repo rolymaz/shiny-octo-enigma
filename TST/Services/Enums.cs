@@ -39,7 +39,7 @@ namespace TST.Services
 
     }
 
-    public enum WorkflowTypeEnum
+    public enum WorkflowEnum
     {
         Test = 0,
         ConsumerMobile = 1,

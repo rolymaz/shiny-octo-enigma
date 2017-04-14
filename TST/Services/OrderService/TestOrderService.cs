@@ -11,7 +11,7 @@ using TST.SQL;
 
 namespace TST.Services.OrderService
 {
-    public class ConsumerMobileOrderService : IOrderService
+    public class TestOrderService : IOrderService
     {
         private StateMachine<OrderQueueEnum, TriggerEnum> _stateMachine;
         private Order _order;
@@ -33,7 +33,6 @@ namespace TST.Services.OrderService
 
             _orderChange = orderChange;
 
-            // get order
             _order = db.Orders.Find(orderChange.OrderId);
 
             //TODO: check that _order is valid, else return error
@@ -341,8 +340,7 @@ namespace TST.Services.OrderService
             order.Owner = newOrder.CreateBy;
             order.TeamId = newOrder.TeamId;
             order.ChangeBy = newOrder.CreateBy;
-           
-          
+
             db.Orders.Add(order);
             db.SaveChanges();
 

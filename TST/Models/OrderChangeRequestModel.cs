@@ -17,10 +17,9 @@ namespace TST.Models
         /// </summary>
         public OrderChangeRequest ChangeRequest { get; set; }
 
-
         public TriggerEnum Trigger { get; set; }
 
-        public WorkflowTypeEnum WorkFlowType { get; set; }
+        public WorkflowEnum WorkFlowType { get; set; }
 
     }
 }
