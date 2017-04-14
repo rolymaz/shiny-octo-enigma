@@ -341,7 +341,11 @@ namespace TST.Services.OrderService
             order.Owner = newOrder.CreateBy;
             order.TeamId = newOrder.TeamId;
             order.ChangeBy = newOrder.CreateBy;
-           
+            order.SeqNo = 1;
+            order.DepartmentId = newOrder.DepartmentId;
+            order.WorkflowId = newOrder.WorkflowId;
+            order.ChangeDate = newOrder.CreateDate;
+
           
             db.Orders.Add(order);
             db.SaveChanges();
