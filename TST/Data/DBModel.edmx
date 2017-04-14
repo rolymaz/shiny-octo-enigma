@@ -1,0 +1,879 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SalesTrackerDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivationResults">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileId" Type="int" Nullable="false" />
+          <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="StatusId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.Company' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="RegistrationNo" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegistrationNo" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CKDocsRecieved" Type="nchar" MaxLength="10" />
+          <Property Name="Director1Name" Type="nchar" MaxLength="10" />
+          <Property Name="Director1RSAID" Type="nchar" MaxLength="10" />
+          <Property Name="Director1ContactNo" Type="nchar" MaxLength="10" />
+          <Property Name="Director2Name" Type="nchar" MaxLength="10" />
+          <Property Name="Director2RSAID" Type="nchar" MaxLength="10" />
+          <Property Name="Director2ContactNo" Type="nchar" MaxLength="10" />
+          <Property Name="PhysicalAddress1" Type="nchar" MaxLength="10" />
+          <Property Name="PhysicalSuburb" Type="nchar" MaxLength="10" />
+          <Property Name="PhysicalTown" Type="nchar" MaxLength="10" />
+          <Property Name="PhysicalProvince" Type="nchar" MaxLength="10" />
+          <Property Name="PhysicalPostCode" Type="nchar" MaxLength="10" />
+          <Property Name="PostalAddress1" Type="nchar" MaxLength="10" />
+          <Property Name="PostalSuburb" Type="nchar" MaxLength="10" />
+          <Property Name="PostalTown" Type="nchar" MaxLength="10" />
+          <Property Name="PostalProvince" Type="nchar" MaxLength="10" />
+          <Property Name="PostalPostCode" Type="nchar" MaxLength="10" />
+          <Property Name="PrimaryContactName" Type="nchar" MaxLength="10" />
+          <Property Name="PrimaryContactTel" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.Customer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CustomerType" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CustomerType" Type="int" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="RSAID" Type="nchar" MaxLength="10" />
+          <Property Name="Title" Type="nchar" MaxLength="10" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="TelMobileNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelMobile2No" Type="nchar" MaxLength="10" />
+          <Property Name="TelHomeNo" Type="nchar" MaxLength="10" />
+          <Property Name="TelWorkNo" Type="nchar" MaxLength="10" />
+          <Property Name="Email" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryAddress1" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryStreet" Type="nchar" MaxLength="10" />
+          <Property Name="DeliverySuburb" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryProvince" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryTown" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryPostCode" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryNotes" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryContactNo" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryGPS" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryLandmark" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'SalesTrackerDb.dbo.Employee' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Employee">
+          <Property Name="Id" Type="int" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gender" Type="nchar" MaxLength="10" />
+          <Property Name="RSAID" Type="nchar" MaxLength="10" />
+          <Property Name="MobileNo" Type="nchar" MaxLength="10" />
+          <Property Name="EmailWNS" Type="nchar" MaxLength="10" />
+          <Property Name="EmailClient" Type="nchar" MaxLength="10" />
+          <Property Name="EmailPersonal" Type="nchar" MaxLength="10" />
+          <Property Name="IsAgent" Type="nchar" MaxLength="10" />
+          <Property Name="IsTeamleader" Type="nchar" MaxLength="10" />
+          <Property Name="IsAdmin" Type="nchar" MaxLength="10" />
+          <Property Name="IsQA" Type="nchar" MaxLength="10" />
+          <Property Name="SalaryRef" Type="nchar" MaxLength="10" />
+          <Property Name="UID" Type="nchar" MaxLength="10" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="EmploymentStatus" Type="nchar" MaxLength="10" />
+          <Property Name="CreateDate" Type="nchar" MaxLength="10" />
+          <Property Name="TeamId" Type="nchar" MaxLength="10" />
+          <Property Name="DivisionId" Type="nchar" MaxLength="10" />
+          <Property Name="LOBID" Type="nchar" MaxLength="10" />
+          <Property Name="SiteId" Type="nchar" MaxLength="10" />
+          <Property Name="ClientId" Type="nchar" MaxLength="10" />
+          <Property Name="Username" Type="nchar" MaxLength="10" />
+          <Property Name="TerminateDate" Type="nchar" MaxLength="10" />
+          <Property Name="TerminateReason" Type="nchar" MaxLength="10" />
+          <Property Name="Password" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+        <EntityType Name="FileLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="Filepath" Type="nvarchar" MaxLength="50" />
+          <Property Name="Filetype" Type="int" />
+          <Property Name="TotalRecords" Type="int" />
+          <Property Name="StatusId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.Lead' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Lead">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DatasetId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="DatasetId" Type="int" Nullable="false" />
+          <Property Name="RSAID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nchar" MaxLength="10" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lastname" Type="nchar" MaxLength="10" />
+          <Property Name="TelMobile1" Type="nchar" MaxLength="10" />
+          <Property Name="TelMobile2" Type="nchar" MaxLength="10" />
+          <Property Name="TelMobile3" Type="nchar" MaxLength="10" />
+          <Property Name="TelMobile4" Type="nchar" MaxLength="10" />
+          <Property Name="TelHome" Type="nchar" MaxLength="10" />
+          <Property Name="TelWork" Type="nchar" MaxLength="10" />
+          <Property Name="CreditScore" Type="nchar" MaxLength="10" />
+          <Property Name="CompanyName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="CampaignId" Type="int" Nullable="false" />
+          <Property Name="TeamId" Type="int" Nullable="false" />
+          <Property Name="LeadId" Type="int" Nullable="false" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="OrderQueueId" Type="int" Nullable="false" />
+          <Property Name="OrderQueueChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="CreateBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SeqNo" Type="int" Nullable="false" />
+          <Property Name="WorkflowId" Type="int" Nullable="false" />
+          <Property Name="ChangeBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="OrderRef" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccountNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="AssignedTo" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderPriority" Type="int" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+          <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CancelDate" Type="datetime" />
+          <Property Name="CancelReasonId" Type="int" />
+          <Property Name="IMEI" Type="nvarchar" MaxLength="50" />
+          <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="ActivationDate" Type="datetime" />
+          <Property Name="ContractExpiryDate" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.OrderItem' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ItemStatusId" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CreateBy" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="Source" Type="int" Nullable="false" />
+          <Property Name="Destination" Type="int" Nullable="false" />
+          <Property Name="ChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="ChangeBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EnterDate" Type="datetime" />
+          <Property Name="ExitDate" Type="datetime" />
+          <Property Name="MinutesInQueue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ReasonId" Type="int" />
+          <Property Name="SeqNo" Type="int" />
+        </EntityType>
+        <EntityType Name="OrderQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PostvetResults">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileId" Type="int" />
+          <Property Name="IDN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Outcome" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProcessDate" Type="datetime" />
+          <Property Name="StatusId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductTemplateId" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
+          <Property Name="tOffer" Type="nchar" MaxLength="10" />
+          <Property Name="tFeatureCode" Type="nchar" MaxLength="10" />
+          <Property Name="tFeatureDescr" Type="nchar" MaxLength="10" />
+          <Property Name="tPricePlan" Type="nchar" MaxLength="10" />
+          <Property Name="tRental" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="tCommExVat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="tCommIncVat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductStatusId" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="ProductTemplateId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReasonCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkQueueId" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReasonCodeType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamleaderId" Type="int" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="SiteId" Type="int" />
+          <Property Name="LOBId" Type="int" />
+        </EntityType>
+        <EntityContainer Name="SalesTrackerDbModelStoreContainer">
+          <EntitySet Name="ActivationResults" EntityType="Self.ActivationResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileLog" EntityType="Self.FileLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLog" EntityType="Self.OrderLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderQueue" EntityType="Self.OrderQueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostvetResults" EntityType="Self.PostvetResults" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReasonCode" EntityType="Self.ReasonCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Company].[Id] AS [Id], 
+    [Company].[Name] AS [Name], 
+    [Company].[RegistrationNo] AS [RegistrationNo], 
+    [Company].[CKDocsRecieved] AS [CKDocsRecieved], 
+    [Company].[Director1Name] AS [Director1Name], 
+    [Company].[Director1RSAID] AS [Director1RSAID], 
+    [Company].[Director1ContactNo] AS [Director1ContactNo], 
+    [Company].[Director2Name] AS [Director2Name], 
+    [Company].[Director2RSAID] AS [Director2RSAID], 
+    [Company].[Director2ContactNo] AS [Director2ContactNo], 
+    [Company].[PhysicalAddress1] AS [PhysicalAddress1], 
+    [Company].[PhysicalSuburb] AS [PhysicalSuburb], 
+    [Company].[PhysicalTown] AS [PhysicalTown], 
+    [Company].[PhysicalProvince] AS [PhysicalProvince], 
+    [Company].[PhysicalPostCode] AS [PhysicalPostCode], 
+    [Company].[PostalAddress1] AS [PostalAddress1], 
+    [Company].[PostalSuburb] AS [PostalSuburb], 
+    [Company].[PostalTown] AS [PostalTown], 
+    [Company].[PostalProvince] AS [PostalProvince], 
+    [Company].[PostalPostCode] AS [PostalPostCode], 
+    [Company].[PrimaryContactName] AS [PrimaryContactName], 
+    [Company].[PrimaryContactTel] AS [PrimaryContactTel]
+    FROM [dbo].[Company] AS [Company]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Customer" EntityType="Self.Customer" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Customer].[Id] AS [Id], 
+    [Customer].[CustomerType] AS [CustomerType], 
+    [Customer].[CompanyId] AS [CompanyId], 
+    [Customer].[RSAID] AS [RSAID], 
+    [Customer].[Title] AS [Title], 
+    [Customer].[Firstname] AS [Firstname], 
+    [Customer].[Lastname] AS [Lastname], 
+    [Customer].[DOB] AS [DOB], 
+    [Customer].[TelMobileNo] AS [TelMobileNo], 
+    [Customer].[TelMobile2No] AS [TelMobile2No], 
+    [Customer].[TelHomeNo] AS [TelHomeNo], 
+    [Customer].[TelWorkNo] AS [TelWorkNo], 
+    [Customer].[Email] AS [Email], 
+    [Customer].[DeliveryAddress1] AS [DeliveryAddress1], 
+    [Customer].[DeliveryStreet] AS [DeliveryStreet], 
+    [Customer].[DeliverySuburb] AS [DeliverySuburb], 
+    [Customer].[DeliveryProvince] AS [DeliveryProvince], 
+    [Customer].[DeliveryTown] AS [DeliveryTown], 
+    [Customer].[DeliveryPostCode] AS [DeliveryPostCode], 
+    [Customer].[DeliveryNotes] AS [DeliveryNotes], 
+    [Customer].[DeliveryContactNo] AS [DeliveryContactNo], 
+    [Customer].[DeliveryGPS] AS [DeliveryGPS], 
+    [Customer].[DeliveryLandmark] AS [DeliveryLandmark]
+    FROM [dbo].[Customer] AS [Customer]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Lead" EntityType="Self.Lead" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Lead].[Id] AS [Id], 
+    [Lead].[DatasetId] AS [DatasetId], 
+    [Lead].[RSAID] AS [RSAID], 
+    [Lead].[Title] AS [Title], 
+    [Lead].[Firstname] AS [Firstname], 
+    [Lead].[Lastname] AS [Lastname], 
+    [Lead].[TelMobile1] AS [TelMobile1], 
+    [Lead].[TelMobile2] AS [TelMobile2], 
+    [Lead].[TelMobile3] AS [TelMobile3], 
+    [Lead].[TelMobile4] AS [TelMobile4], 
+    [Lead].[TelHome] AS [TelHome], 
+    [Lead].[TelWork] AS [TelWork], 
+    [Lead].[CreditScore] AS [CreditScore], 
+    [Lead].[CompanyName] AS [CompanyName]
+    FROM [dbo].[Lead] AS [Lead]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OrderItem].[Id] AS [Id], 
+    [OrderItem].[OrderId] AS [OrderId], 
+    [OrderItem].[ProductId] AS [ProductId], 
+    [OrderItem].[ItemStatusId] AS [ItemStatusId], 
+    [OrderItem].[CreateDate] AS [CreateDate], 
+    [OrderItem].[CreateBy] AS [CreateBy]
+    FROM [dbo].[OrderItem] AS [OrderItem]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Product" EntityType="Self.Product" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Product].[Id] AS [Id], 
+    [Product].[FullName] AS [FullName], 
+    [Product].[ShortName] AS [ShortName], 
+    [Product].[Description] AS [Description], 
+    [Product].[tOffer] AS [tOffer], 
+    [Product].[tFeatureCode] AS [tFeatureCode], 
+    [Product].[tFeatureDescr] AS [tFeatureDescr], 
+    [Product].[tPricePlan] AS [tPricePlan], 
+    [Product].[tRental] AS [tRental], 
+    [Product].[tCommExVat] AS [tCommExVat], 
+    [Product].[tCommIncVat] AS [tCommIncVat], 
+    [Product].[ProductStatusId] AS [ProductStatusId], 
+    [Product].[CreateDate] AS [CreateDate], 
+    [Product].[ProductTemplateId] AS [ProductTemplateId]
+    FROM [dbo].[Product] AS [Product]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Team" EntityType="Self.Team" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Team].[Id] AS [Id], 
+    [Team].[Name] AS [Name], 
+    [Team].[TeamleaderId] AS [TeamleaderId], 
+    [Team].[ClientId] AS [ClientId], 
+    [Team].[SiteId] AS [SiteId], 
+    [Team].[LOBId] AS [LOBId]
+    FROM [dbo].[Team] AS [Team]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SalesTrackerDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActivationResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" Nullable="false" />
+          <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Outcome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FileLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Filepath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Filetype" Type="Int32" />
+          <Property Name="TotalRecords" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="CampaignId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId" Type="Int32" Nullable="false" />
+          <Property Name="LeadId" Type="Int32" Nullable="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="OrderQueueId" Type="Int32" Nullable="false" />
+          <Property Name="OrderQueueChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CreateBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeqNo" Type="Int32" Nullable="false" />
+          <Property Name="WorkflowId" Type="Int32" Nullable="false" />
+          <Property Name="ChangeBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderPriority" Type="Int32" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
+          <Property Name="CancelReasonId" Type="Int32" />
+          <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActivationDate" Type="DateTime" Precision="3" />
+          <Property Name="ContractExpiryDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="Source" Type="Int32" Nullable="false" />
+          <Property Name="Destination" Type="Int32" Nullable="false" />
+          <Property Name="ChangeDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ChangeBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EnterDate" Type="DateTime" Precision="3" />
+          <Property Name="ExitDate" Type="DateTime" Precision="3" />
+          <Property Name="MinutesInQueue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ReasonId" Type="Int32" />
+          <Property Name="SeqNo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OrderQueue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PostvetResult">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="IDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Outcome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ReasonCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkQueueId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonCodeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="RegistrationNo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CKDocsRecieved" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director1Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director1RSAID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director1ContactNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director2Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director2RSAID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Director2ContactNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhysicalAddress1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhysicalSuburb" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhysicalTown" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhysicalProvince" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PhysicalPostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PostalAddress1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PostalSuburb" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PostalTown" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PostalProvince" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PostalPostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PrimaryContactName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PrimaryContactTel" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="CustomerType" />
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CustomerType" Type="Int32" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="RSAID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="TelMobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelMobile2No" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelHomeNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelWorkNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryAddress1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryStreet" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliverySuburb" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryProvince" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryTown" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryPostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryNotes" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryContactNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryGPS" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryLandmark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Lead">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="DatasetId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DatasetId" Type="Int32" Nullable="false" />
+          <Property Name="RSAID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lastname" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelMobile1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelMobile2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelMobile3" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelMobile4" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelHome" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TelWork" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CreditScore" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ItemStatusId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateBy" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="ProductTemplateId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tOffer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tFeatureCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tFeatureDescr" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tPricePlan" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="tRental" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="tCommExVat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="tCommIncVat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductStatusId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="ProductTemplateId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamleaderId" Type="Int32" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="LOBId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="SalesTrackerDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivationResults" EntityType="Self.ActivationResult" />
+          <EntitySet Name="FileLogs" EntityType="Self.FileLog" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderLogs" EntityType="Self.OrderLog" />
+          <EntitySet Name="OrderQueues" EntityType="Self.OrderQueue" />
+          <EntitySet Name="PostvetResults" EntityType="Self.PostvetResult" />
+          <EntitySet Name="ReasonCodes" EntityType="Self.ReasonCode" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Leads" EntityType="Self.Lead" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Teams" EntityType="Self.Team" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SalesTrackerDbModelStoreContainer" CdmEntityContainer="SalesTrackerDbEntities">
+          <EntitySetMapping Name="ActivationResults">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.ActivationResult">
+              <MappingFragment StoreEntitySet="ActivationResults">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileLogs">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.FileLog">
+              <MappingFragment StoreEntitySet="FileLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Filepath" ColumnName="Filepath" />
+                <ScalarProperty Name="Filetype" ColumnName="Filetype" />
+                <ScalarProperty Name="TotalRecords" ColumnName="TotalRecords" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
+                <ScalarProperty Name="TeamId" ColumnName="TeamId" />
+                <ScalarProperty Name="LeadId" ColumnName="LeadId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="OrderQueueId" ColumnName="OrderQueueId" />
+                <ScalarProperty Name="OrderQueueChangeDate" ColumnName="OrderQueueChangeDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="WorkflowId" ColumnName="WorkflowId" />
+                <ScalarProperty Name="ChangeBy" ColumnName="ChangeBy" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="OrderRef" ColumnName="OrderRef" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+                <ScalarProperty Name="OrderPriority" ColumnName="OrderPriority" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="CancelBy" ColumnName="CancelBy" />
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="CancelReasonId" ColumnName="CancelReasonId" />
+                <ScalarProperty Name="IMEI" ColumnName="IMEI" />
+                <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
+                <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
+                <ScalarProperty Name="ContractExpiryDate" ColumnName="ContractExpiryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLogs">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.OrderLog">
+              <MappingFragment StoreEntitySet="OrderLog">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="ChangeDate" ColumnName="ChangeDate" />
+                <ScalarProperty Name="ChangeBy" ColumnName="ChangeBy" />
+                <ScalarProperty Name="EnterDate" ColumnName="EnterDate" />
+                <ScalarProperty Name="ExitDate" ColumnName="ExitDate" />
+                <ScalarProperty Name="MinutesInQueue" ColumnName="MinutesInQueue" />
+                <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderQueues">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.OrderQueue">
+              <MappingFragment StoreEntitySet="OrderQueue">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostvetResults">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.PostvetResult">
+              <MappingFragment StoreEntitySet="PostvetResults">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="IDN" ColumnName="IDN" />
+                <ScalarProperty Name="Outcome" ColumnName="Outcome" />
+                <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReasonCodes">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.ReasonCode">
+              <MappingFragment StoreEntitySet="ReasonCode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WorkQueueId" ColumnName="WorkQueueId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReasonCodeType" ColumnName="ReasonCodeType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="CKDocsRecieved" ColumnName="CKDocsRecieved" />
+                <ScalarProperty Name="Director1Name" ColumnName="Director1Name" />
+                <ScalarProperty Name="Director1RSAID" ColumnName="Director1RSAID" />
+                <ScalarProperty Name="Director1ContactNo" ColumnName="Director1ContactNo" />
+                <ScalarProperty Name="Director2Name" ColumnName="Director2Name" />
+                <ScalarProperty Name="Director2RSAID" ColumnName="Director2RSAID" />
+                <ScalarProperty Name="Director2ContactNo" ColumnName="Director2ContactNo" />
+                <ScalarProperty Name="PhysicalAddress1" ColumnName="PhysicalAddress1" />
+                <ScalarProperty Name="PhysicalSuburb" ColumnName="PhysicalSuburb" />
+                <ScalarProperty Name="PhysicalTown" ColumnName="PhysicalTown" />
+                <ScalarProperty Name="PhysicalProvince" ColumnName="PhysicalProvince" />
+                <ScalarProperty Name="PhysicalPostCode" ColumnName="PhysicalPostCode" />
+                <ScalarProperty Name="PostalAddress1" ColumnName="PostalAddress1" />
+                <ScalarProperty Name="PostalSuburb" ColumnName="PostalSuburb" />
+                <ScalarProperty Name="PostalTown" ColumnName="PostalTown" />
+                <ScalarProperty Name="PostalProvince" ColumnName="PostalProvince" />
+                <ScalarProperty Name="PostalPostCode" ColumnName="PostalPostCode" />
+                <ScalarProperty Name="PrimaryContactName" ColumnName="PrimaryContactName" />
+                <ScalarProperty Name="PrimaryContactTel" ColumnName="PrimaryContactTel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="RSAID" ColumnName="RSAID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="TelMobileNo" ColumnName="TelMobileNo" />
+                <ScalarProperty Name="TelMobile2No" ColumnName="TelMobile2No" />
+                <ScalarProperty Name="TelHomeNo" ColumnName="TelHomeNo" />
+                <ScalarProperty Name="TelWorkNo" ColumnName="TelWorkNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DeliveryAddress1" ColumnName="DeliveryAddress1" />
+                <ScalarProperty Name="DeliveryStreet" ColumnName="DeliveryStreet" />
+                <ScalarProperty Name="DeliverySuburb" ColumnName="DeliverySuburb" />
+                <ScalarProperty Name="DeliveryProvince" ColumnName="DeliveryProvince" />
+                <ScalarProperty Name="DeliveryTown" ColumnName="DeliveryTown" />
+                <ScalarProperty Name="DeliveryPostCode" ColumnName="DeliveryPostCode" />
+                <ScalarProperty Name="DeliveryNotes" ColumnName="DeliveryNotes" />
+                <ScalarProperty Name="DeliveryContactNo" ColumnName="DeliveryContactNo" />
+                <ScalarProperty Name="DeliveryGPS" ColumnName="DeliveryGPS" />
+                <ScalarProperty Name="DeliveryLandmark" ColumnName="DeliveryLandmark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leads">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Lead">
+              <MappingFragment StoreEntitySet="Lead">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DatasetId" ColumnName="DatasetId" />
+                <ScalarProperty Name="RSAID" ColumnName="RSAID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="TelMobile1" ColumnName="TelMobile1" />
+                <ScalarProperty Name="TelMobile2" ColumnName="TelMobile2" />
+                <ScalarProperty Name="TelMobile3" ColumnName="TelMobile3" />
+                <ScalarProperty Name="TelMobile4" ColumnName="TelMobile4" />
+                <ScalarProperty Name="TelHome" ColumnName="TelHome" />
+                <ScalarProperty Name="TelWork" ColumnName="TelWork" />
+                <ScalarProperty Name="CreditScore" ColumnName="CreditScore" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItems">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.OrderItem">
+              <MappingFragment StoreEntitySet="OrderItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ItemStatusId" ColumnName="ItemStatusId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreateBy" ColumnName="CreateBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="tOffer" ColumnName="tOffer" />
+                <ScalarProperty Name="tFeatureCode" ColumnName="tFeatureCode" />
+                <ScalarProperty Name="tFeatureDescr" ColumnName="tFeatureDescr" />
+                <ScalarProperty Name="tPricePlan" ColumnName="tPricePlan" />
+                <ScalarProperty Name="tRental" ColumnName="tRental" />
+                <ScalarProperty Name="tCommExVat" ColumnName="tCommExVat" />
+                <ScalarProperty Name="tCommIncVat" ColumnName="tCommIncVat" />
+                <ScalarProperty Name="ProductStatusId" ColumnName="ProductStatusId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ProductTemplateId" ColumnName="ProductTemplateId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teams">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Team">
+              <MappingFragment StoreEntitySet="Team">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeamleaderId" ColumnName="TeamleaderId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="LOBId" ColumnName="LOBId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
