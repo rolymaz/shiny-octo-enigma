@@ -222,7 +222,7 @@
     <Compile Include="Data\Product.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Data\ReasonCode.cs">
+    <Compile Include="Data\Reason.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Team.cs">

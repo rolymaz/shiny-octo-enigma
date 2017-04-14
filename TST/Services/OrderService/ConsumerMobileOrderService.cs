@@ -335,21 +335,41 @@ namespace TST.Services.OrderService
             order.CreateBy = newOrder.CreateBy;
             order.CreateDate = newOrder.CreateDate;
             order.CustomerId = newOrder.CustomerId;
-            order.LeadId = newOrder.LeadId;
-            order.Notes = newNote;
+            order.LeadId = newOrder.LeadId;           
             order.OrderQueueId = 1; //set the default entry queue 
             order.Owner = newOrder.CreateBy;
             order.TeamId = newOrder.TeamId;
             order.ChangeBy = newOrder.CreateBy;
-            order.SeqNo = 1;
+            order.SeqNo = 0;
             order.DepartmentId = newOrder.DepartmentId;
             order.WorkflowId = newOrder.WorkflowId;
             order.ChangeDate = newOrder.CreateDate;
+            order.OrderQueueChangeDate = newOrder.CreateDate;
+            order.ReasonId = 1;
 
-          
             db.Orders.Add(order);
             db.SaveChanges();
 
+
+            //refresh order
+            _order = order;
+
+            // _order = db.Orders.Find(order.Id);
+
+            //setup change request
+            _orderChange = new OrderChangeRequest();
+            _orderChange.NewNote = newNote;
+            _orderChange.OrderId = order.Id;
+            _orderChange.ReasonId = 1;
+            _orderChange.Username = newOrder.CreateBy;
+
+            
+            //setup the statemachine
+
+            Initialise(OrderQueueEnum.Opened);
+
+            //open the order
+            Open();
 
 
             return order;
@@ -416,10 +436,13 @@ namespace TST.Services.OrderService
             _order.ChangeBy = _orderChange.Username;
             _order.Notes = UpdateNotes(changeDate.ToString());
             _order.SeqNo = newSeqNo;
+            _order.ReasonId = _orderChange.ReasonId;
 
             db.Entry(_order).State = EntityState.Modified;
 
             db.SaveChanges();
+
+            
 
         }
 

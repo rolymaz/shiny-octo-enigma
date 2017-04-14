@@ -41,12 +41,12 @@ namespace TST.Services
 
     public enum WorkflowEnum
     {
-        Test = 0,
-        ConsumerMobile = 1,
-        ConsumerFixedLine = 2,
-        BusinessMobile = 3,
-        BusinessFixedLine = 4,
-        Online=5
+        Test = 1,
+        ConsumerMobile = 2,
+        ConsumerFixedLine = 3,
+        BusinessMobile = 4,
+        BusinessFixedLine = 5,
+        Online=6
     }
 
     public enum OrderChangeReponseEnum

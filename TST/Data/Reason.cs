@@ -12,11 +12,11 @@ namespace TST.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class ReasonCode
+    public partial class Reason
     {
         public int Id { get; set; }
         public Nullable<int> WorkQueueId { get; set; }
+        public string ReasonType { get; set; }
         public string Description { get; set; }
-        public string ReasonCodeType { get; set; }
     }
 }

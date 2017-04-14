@@ -55,6 +55,13 @@
         <dd>
             @Html.DisplayFor(model => model.Order.TeamId)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.SeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.SeqNo)
+        </dd>
 
     </dl>
 </div>
@@ -72,14 +79,15 @@
             OrderId
         </th>
         <th>
+            SeqNo
+        </th>
+        <th>
             Source
         </th>
         <th>
             Destination
         </th>
-        <th>
-           Result
-        </th>
+      
         <th>
            ChangeDate
         </th>
@@ -107,14 +115,15 @@
             @Html.DisplayFor(modelItem => item.OrderId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.SeqNo)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Source)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Destination)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Result)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.ChangeDate)
         </td>

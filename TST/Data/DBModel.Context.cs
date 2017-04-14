@@ -31,12 +31,12 @@ namespace TST.Data
         public virtual DbSet<OrderLog> OrderLogs { get; set; }
         public virtual DbSet<OrderQueue> OrderQueues { get; set; }
         public virtual DbSet<PostvetResult> PostvetResults { get; set; }
-        public virtual DbSet<ReasonCode> ReasonCodes { get; set; }
         public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Lead> Leads { get; set; }
         public virtual DbSet<OrderItem> OrderItems { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Reason> Reasons { get; set; }
     }
 }

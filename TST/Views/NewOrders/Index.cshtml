@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.DepartmentId)
         </th>
         <th>
@@ -54,12 +57,7 @@
         <th>
             @Html.DisplayNameFor(model => model.ChangeDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OrderRef)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccountNo)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.AssignedTo)
         </th>
@@ -68,33 +66,19 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
-        </th>
+        </th>       
         <th>
-            @Html.DisplayNameFor(model => model.CancelBy)
+            @Html.DisplayNameFor(model => model.ReasonId)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CancelDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CancelReasonId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IMEI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MSISDN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ActivationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContractExpiryDate)
-        </th>
+        
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.DepartmentId)
         </td>
@@ -138,12 +122,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.ChangeDate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderRef)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountNo)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.AssignedTo)
         </td>
@@ -152,28 +131,11 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
-        </td>
+        </td>       
         <td>
-            @Html.DisplayFor(modelItem => item.CancelBy)
+            @Html.DisplayFor(modelItem => item.ReasonId)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CancelDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CancelReasonId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IMEI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MSISDN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActivationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContractExpiryDate)
-        </td>
+     
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

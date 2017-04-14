@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SalesTrackerDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SalesTrackerDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActivationResults">
           <Key>
             <PropertyRef Name="Id" />
@@ -162,14 +162,12 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Lead' does not have a primary k
           <Property Name="WorkflowId" Type="int" Nullable="false" />
           <Property Name="ChangeBy" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ChangeDate" Type="datetime" Nullable="false" />
+          <Property Name="ReasonId" Type="int" Nullable="false" />
           <Property Name="OrderRef" Type="nvarchar" MaxLength="50" />
           <Property Name="AccountNo" Type="nvarchar" MaxLength="50" />
           <Property Name="AssignedTo" Type="nvarchar" MaxLength="50" />
           <Property Name="OrderPriority" Type="int" />
           <Property Name="Notes" Type="nvarchar(max)" />
-          <Property Name="CancelBy" Type="nvarchar" MaxLength="50" />
-          <Property Name="CancelDate" Type="datetime" />
-          <Property Name="CancelReasonId" Type="int" />
           <Property Name="IMEI" Type="nvarchar" MaxLength="50" />
           <Property Name="MSISDN" Type="nvarchar" MaxLength="50" />
           <Property Name="ActivationDate" Type="datetime" />
@@ -244,14 +242,14 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Product' does not have a primar
           <Property Name="CreateDate" Type="datetime" />
           <Property Name="ProductTemplateId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="ReasonCode">
+        <EntityType Name="Reason">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WorkQueueId" Type="int" />
+          <Property Name="ReasonType" Type="nvarchar" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
-          <Property Name="ReasonCodeType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -273,7 +271,7 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
           <EntitySet Name="OrderLog" EntityType="Self.OrderLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderQueue" EntityType="Self.OrderQueue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostvetResults" EntityType="Self.PostvetResults" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ReasonCode" EntityType="Self.ReasonCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reason" EntityType="Self.Reason" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Company].[Id] AS [Id], 
@@ -384,8 +382,7 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
     FROM [dbo].[Team] AS [Team]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SalesTrackerDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -435,13 +432,11 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
           <Property Name="AssignedTo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OrderPriority" Type="Int32" />
           <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CancelBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CancelDate" Type="DateTime" Precision="3" />
-          <Property Name="CancelReasonId" Type="Int32" />
           <Property Name="IMEI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MSISDN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ActivationDate" Type="DateTime" Precision="3" />
           <Property Name="ContractExpiryDate" Type="DateTime" Precision="3" />
+          <Property Name="ReasonId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="OrderLog">
           <Key>
@@ -476,15 +471,6 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
           <Property Name="Outcome" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProcessDate" Type="DateTime" Precision="3" />
           <Property Name="StatusId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="ReasonCode">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="WorkQueueId" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ReasonCodeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -614,14 +600,23 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
           <EntitySet Name="OrderLogs" EntityType="Self.OrderLog" />
           <EntitySet Name="OrderQueues" EntityType="Self.OrderQueue" />
           <EntitySet Name="PostvetResults" EntityType="Self.PostvetResult" />
-          <EntitySet Name="ReasonCodes" EntityType="Self.ReasonCode" />
           <EntitySet Name="Companies" EntityType="Self.Company" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Leads" EntityType="Self.Lead" />
           <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Teams" EntityType="Self.Team" />
+          <EntitySet Name="Reasons" EntityType="SalesTrackerDbModel.Reason" />
         </EntityContainer>
+        <EntityType Name="Reason">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkQueueId" Type="Int32" />
+          <Property Name="ReasonType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -655,6 +650,7 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="SalesTrackerDbModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="ReasonId" ColumnName="ReasonId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="CampaignId" ColumnName="CampaignId" />
@@ -675,9 +671,6 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
                 <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
                 <ScalarProperty Name="OrderPriority" ColumnName="OrderPriority" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
-                <ScalarProperty Name="CancelBy" ColumnName="CancelBy" />
-                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
-                <ScalarProperty Name="CancelReasonId" ColumnName="CancelReasonId" />
                 <ScalarProperty Name="IMEI" ColumnName="IMEI" />
                 <ScalarProperty Name="MSISDN" ColumnName="MSISDN" />
                 <ScalarProperty Name="ActivationDate" ColumnName="ActivationDate" />
@@ -719,16 +712,6 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
                 <ScalarProperty Name="Outcome" ColumnName="Outcome" />
                 <ScalarProperty Name="ProcessDate" ColumnName="ProcessDate" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ReasonCodes">
-            <EntityTypeMapping TypeName="SalesTrackerDbModel.ReasonCode">
-              <MappingFragment StoreEntitySet="ReasonCode">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="WorkQueueId" ColumnName="WorkQueueId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ReasonCodeType" ColumnName="ReasonCodeType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -850,6 +833,16 @@ warning 6002: The table/view 'SalesTrackerDb.dbo.Team' does not have a primary k
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
                 <ScalarProperty Name="SiteId" ColumnName="SiteId" />
                 <ScalarProperty Name="LOBId" ColumnName="LOBId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reasons">
+            <EntityTypeMapping TypeName="SalesTrackerDbModel.Reason">
+              <MappingFragment StoreEntitySet="Reason">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReasonType" ColumnName="ReasonType" />
+                <ScalarProperty Name="WorkQueueId" ColumnName="WorkQueueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

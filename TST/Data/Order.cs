@@ -34,12 +34,10 @@ namespace TST.Data
         public string AssignedTo { get; set; }
         public Nullable<int> OrderPriority { get; set; }
         public string Notes { get; set; }
-        public string CancelBy { get; set; }
-        public Nullable<System.DateTime> CancelDate { get; set; }
-        public Nullable<int> CancelReasonId { get; set; }
         public string IMEI { get; set; }
         public string MSISDN { get; set; }
         public Nullable<System.DateTime> ActivationDate { get; set; }
         public Nullable<System.DateTime> ContractExpiryDate { get; set; }
+        public int ReasonId { get; set; }
     }
 }

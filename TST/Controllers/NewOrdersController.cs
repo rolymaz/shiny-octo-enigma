@@ -48,14 +48,14 @@ namespace TST.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DepartmentId,CampaignId,TeamId,LeadId,CustomerId,CreateBy")] Order order)
+        public ActionResult Create([Bind(Include = "Id,DepartmentId,CampaignId,TeamId,LeadId,CustomerId,CreateBy, WorkflowId")] Order order)
         {
             if (ModelState.IsValid)
             {
                 //initial orderservice 
                 OrderServiceFactory factory = new OrderServiceFactory();
                                
-
+                
                 NewOrder newOrder = new NewOrder();
 
                 newOrder.AssignedTo = order.AssignedTo;
@@ -72,6 +72,8 @@ namespace TST.Controllers
                 IOrderService orderService = factory.StartFactory((WorkflowEnum)order.WorkflowId);
 
                 orderService.CreateOrder(newOrder);
+
+              
                 
                 return RedirectToAction("Index");
             }

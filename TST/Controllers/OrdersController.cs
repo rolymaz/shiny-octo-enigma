@@ -28,7 +28,7 @@ namespace TST.Controllers
 
             OrderModel model = new OrderModel();
 
-            model.OrderLogs = db.OrderLogs.Where(m =>m.OrderId ==orderId).ToList();
+            model.OrderLogs = db.OrderLogs.Where(m => m.OrderId == orderId).ToList();
 
             model.Order = db.Orders.Find(orderId);
 
@@ -90,18 +90,17 @@ namespace TST.Controllers
         {
             if (ModelState.IsValid)
             {
-                //hardcoded for now:
-                orderChangeRequest.WorkFlowType = WorkflowEnum.ConsumerMobile;
-
 
                 //initial orderservice 
                 OrderServiceFactory factory = new OrderServiceFactory();
 
-                IOrderService orderService = factory.StartFactory(orderChangeRequest.WorkFlowType);
+
+                IOrderService orderService = factory.StartFactory(orderChangeRequest.ChangeRequest.OrderId);
+
 
                 orderService.StartService(orderChangeRequest.ChangeRequest);
 
-                
+
                 switch (orderChangeRequest.Trigger)
                 {
                     case TriggerEnum.Open:
@@ -111,7 +110,7 @@ namespace TST.Controllers
                     case TriggerEnum.Pass:
                         orderService.Pass();
                         break;
-                   
+
 
                     case TriggerEnum.Fail:
                         orderService.Fail();
