@@ -337,9 +337,14 @@ namespace TST.Services.OrderService
             order.LeadId = newOrder.LeadId;
             order.Notes = newNote;
             order.OrderQueueId = 1; //set the default entry queue 
+            order.OrderQueueChangeDate = newOrder.CreateDate;
             order.Owner = newOrder.CreateBy;
             order.TeamId = newOrder.TeamId;
             order.ChangeBy = newOrder.CreateBy;
+            order.ChangeDate = newOrder.CreateDate;
+            order.WorkflowId = newOrder.WorkflowId;
+            order.SeqNo = 1;
+            order.DepartmentId = newOrder.DepartmentId;
 
             db.Orders.Add(order);
             db.SaveChanges();

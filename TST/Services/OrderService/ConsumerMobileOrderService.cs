@@ -368,6 +368,9 @@ namespace TST.Services.OrderService
 
             DateTime changeDate = DateTime.Now;
 
+            int newSeqNo = _order.SeqNo + 1;
+
+
             //update last log with exit datetime.        
 
             //find the last log that where destination state equals the new source state and that has no exit date.
@@ -403,6 +406,7 @@ namespace TST.Services.OrderService
             log.Destination = (int)transition.Destination;
             log.EnterDate = changeDate;
             log.ReasonId = _orderChange.ReasonId;
+            log.SeqNo = newSeqNo;
 
             db.OrderLogs.Add(log);
 
@@ -411,6 +415,7 @@ namespace TST.Services.OrderService
             _order.OrderQueueChangeDate = changeDate;
             _order.ChangeBy = _orderChange.Username;
             _order.Notes = UpdateNotes(changeDate.ToString());
+            _order.SeqNo = newSeqNo;
 
             db.Entry(_order).State = EntityState.Modified;
 

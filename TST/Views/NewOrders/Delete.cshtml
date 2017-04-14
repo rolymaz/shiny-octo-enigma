@@ -1,0 +1,240 @@
+﻿@model TST.SQL.Order
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CampaignId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CampaignId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeadId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LeadId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQueueId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQueueId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderQueueChangeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderQueueChangeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerRef)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerRef)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Owner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Owner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkflowId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkflowId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangeBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangeBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChangeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChangeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderRef)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderRef)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssignedTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssignedTo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPriority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderPriority)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CancelBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CancelBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CancelDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CancelDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CancelReasonId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CancelReasonId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMEI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IMEI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MSISDN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MSISDN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActivationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActivationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractExpiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractExpiryDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

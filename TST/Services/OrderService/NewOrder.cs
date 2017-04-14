@@ -10,6 +10,7 @@ namespace TST.Services.OrderService
     /// </summary>
     public class NewOrder
     {
+        public int OrderId { get; set; }
         /// <summary>
         /// the user who created the order
         /// </summary>
